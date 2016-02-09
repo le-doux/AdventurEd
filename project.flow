@@ -1,0 +1,25 @@
+{
+
+  project : {
+    name : 'AdventurEd',
+    version : '1.0.0',
+    author : 'Adam Le Doux',
+
+    app : {
+      name : 'luxe_empty',
+      package : 'org.luxeengine.adventured'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}
