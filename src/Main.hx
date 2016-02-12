@@ -35,18 +35,34 @@ class Main extends luxe.Game {
 	override function onkeydown( e:KeyEvent ) {
 
 		//open file
-		/*
 		if (e.keycode == Key.key_o && e.mod.meta ) {
 			var path = Luxe.core.app.io.module.dialog_open();
 			var fileStr = File.getContent(path);
 			var json = Json.parse(fileStr);
 
 			if (curTerrain != null) curTerrain.clear();
-			curTerrain = new Terrain(json);
-			curTerrain.draw(new Color(1,0,1));
+			curTerrain = new Terrain();
+			curTerrain.setFromJson(json);
+			curTerrain.draw(new Color(1,1,1));
 		}
-		*/
 
+		//save file
+		if (e.keycode == Key.key_s && e.mod.meta) {
+			//get path & open file
+			var path = Luxe.core.app.io.module.dialog_save();
+			var output = File.write(path);
+
+			//get data & write it
+			var saveJson = curTerrain.getJson();
+			var saveStr = Json.stringify(saveJson);
+			//trace(saveStr);
+			output.writeString(saveStr);
+
+			//close file
+			output.close();
+		}
+
+		//delete hack
 		if (e.keycode == Key.key_d && curTerrain.points.length > 2) {
 			if (e.mod.meta) {
 				curTerrain.removeStartPoint();
@@ -102,20 +118,20 @@ class Main extends luxe.Game {
 	} //onkeyup
 
 	override function onmousedown( e:MouseEvent ) {
-		/*
+
+		var prevSize = curTerrain.points.length;
+
 		var screen_point = e.pos;
 		var world_point = Luxe.camera.screen_point_to_world( screen_point );
-		var terrain_point = curTerrain.worldPosToTerrainPos( world_point );
-		trace( terrain_point );
-		if (terrain_point.x > 0 && terrain_point.x < curTerrain.length) {
-			//TODO
-			curTerrain.data.heights[ curTerrain.closestIndexToTerrainPos(terrain_point.x) ] = terrain_point.y;
-			//TODO
-			curTerrain.redraw(new Color(1,1,1));
-		}
-		*/
 
-		
+		curTerrain.buildTerrainToPoint(world_point);
+		if (prevSize != curTerrain.points.length) curTerrain.redraw(new Color(1,1,1));
+
+		prevCursorPos = screen_point;		
+	}
+
+	override function onmousemove(e:MouseEvent) {
+		//TODO move stuff here
 	}
 
 	override function onmouseup( e:MouseEvent ) {
@@ -130,17 +146,12 @@ class Main extends luxe.Game {
 
 			var screen_point = Luxe.screen.cursor.pos;
 			var world_point = Luxe.camera.screen_point_to_world( screen_point );
-
-			//TODO: onmousedown if you're over the edge of the terrain, make sure that the connection you get fills it in with a bunch of points
-			if (prevCursorPos == null) prevCursorPos = Luxe.screen.cursor.pos;
 			var prev_world_point = Luxe.camera.screen_point_to_world( prevCursorPos );
 
-			//curTerrain.buildTerrain(world_point);
 			curTerrain.buildTerrainAlongLine(prev_world_point, world_point);
-
 			if (prevSize != curTerrain.points.length) curTerrain.redraw(new Color(1,1,1));
 
-			prevCursorPos = Luxe.screen.cursor.pos;
+			prevCursorPos = screen_point;
 		}
 
 	} //update

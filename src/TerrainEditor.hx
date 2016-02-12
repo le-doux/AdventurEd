@@ -52,4 +52,19 @@ class TerrainEditor {
 		t.buildTerrain(p1);
 		return t;
 	}
+
+	//equivalent function for when you only have one point (ex: on mouse down)
+	static public function buildTerrainToPoint(t : Terrain, p : Vector) : Terrain {		
+		var p0 = p;
+		if (p.x > t.points[t.points.length - 1].x) {
+			p0 = t.points[t.points.length - 1];
+		}
+		else if (p.x < t.points[0].x) {
+			p0 = t.points[0];
+		}
+
+		t.buildTerrainAlongLine(p0, p);
+
+		return t;
+	}
 }
