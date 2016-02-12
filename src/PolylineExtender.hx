@@ -145,6 +145,7 @@ class PolylineExtender {
 		return new PolygonCollisionShape(pos.x, pos.y, points.clone());
 	}
 
+	//is this function still necessary with toJson?
 	static public function toFloatArray(points:Array<Vector>) : Array<Float> {
 		var arr = [];
 		for (p in points) {
@@ -152,5 +153,21 @@ class PolylineExtender {
 			arr.push(p.y);
 		}
 		return arr;
+	}
+
+	static public function toJson(points:Array<Vector>) {
+		var arr = [];
+		for (p in points) {
+			arr.push(p.toJson());
+		}
+		return arr;
+	}
+
+	static public function fromJson(points:Array<Vector>, json : Array<Dynamic>) : Array<Vector> {
+		points = [];
+		for (j in json) {
+			points.push( (new Vector()).fromJson(j) );
+		}
+		return points;
 	}
 }

@@ -1,6 +1,7 @@
 import luxe.Vector;
 import luxe.Color;
 import luxe.utils.Maths;
+
 using VectorExtender;
 using PolylineExtender;
 
@@ -51,20 +52,25 @@ class Terrain {
 		return l;
 	}
 
-	//are these necessary yet?
-	public function getJson() : Array<Dynamic> {
+	public function toJson() : Array<Dynamic> {
+		/*
 		var json = [];
 		for (p in points) {
-			json.push( p.getJson() );
+			json.push( p.toJson() );
 		}
 		return json;
+		*/
+		return points.toJson();
 	}
 
-	public function setFromJson(json : Array<Dynamic>) {
+	public function fromJson(json : Array<Dynamic>) {
+		/*
 		points = [];
 		for (j in json) {
-			points.push( (new Vector()).setFromJson(j) );
+			points.push( (new Vector()).fromJson(j) );
 		}
+		*/
+		points.fromJson(json);
 	}
 
 	public function closestIndexHorizontally(x : Float) : Int {

@@ -46,12 +46,12 @@ class VectorExtender {
 		return Vector.Add( a, Vector.Multiply(ab.normalized, d) );
 	}
 
-	static public function setFromJson(v:Vector, json) : Vector {
+	static public function fromJson(v:Vector, json) : Vector {
 		v = new Vector(json.x, json.y);
 		return v;
 	}
 
-	static public function getJson(v:Vector) {
+	static public function toJson(v:Vector) {
 		return {
 			x : v.x,
 			y : v.y
