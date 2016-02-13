@@ -166,7 +166,10 @@ class PolylineExtender {
 	static public function fromJson(points:Array<Vector>, json : Array<Dynamic>) : Array<Vector> {
 		points = [];
 		for (j in json) {
-			points.push( (new Vector()).fromJson(j) );
+			trace(j);
+			var v = (new Vector()).fromJson(j);
+			trace(v);
+			points.push( v );
 		}
 		return points;
 	}

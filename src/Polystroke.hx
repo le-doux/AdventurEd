@@ -6,6 +6,7 @@ import phoenix.Batcher;
 
 using PolylineExtender;
 using ColorExtender;
+using VectorExtender;
 
 //seems very similar to Terrain class (too duplicative?)
 class Polystroke extends Visual {
@@ -42,14 +43,18 @@ class Polystroke extends Visual {
 		points = points.toLocalSpace(transform);
 	}
 
-	public function toJson() : Array<Dynamic> {
-		return points.toJson();
+	public function toJson() {
+		return {
+			pos : pos.toJson(),
+			points : points.toJson()
+		}
 	}
 
-	public function fromJson(json : Array<Dynamic>) : Polystroke {
-		points.fromJson(json);
+	public function fromJson(json) : Polystroke {
+		points = points.fromJson(json.points);
 		recenter();
 		generateMesh();
+		pos = (new Vector()).fromJson(json.pos);
 		return this;
 	}
 

@@ -22,6 +22,7 @@ class Terrain {
 
 	public function draw(c : Color) {
 		for (i in 1 ... points.length) {
+			trace(points[i]);
 			var g = Luxe.draw.line({
 				p0 : points[i - 1],
 				p1 : points[i],
@@ -70,7 +71,8 @@ class Terrain {
 			points.push( (new Vector()).fromJson(j) );
 		}
 		*/
-		points.fromJson(json);
+		points = points.fromJson(json);
+		trace(points);
 	}
 
 	public function closestIndexHorizontally(x : Float) : Int {

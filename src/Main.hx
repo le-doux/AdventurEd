@@ -63,17 +63,25 @@ class Main extends luxe.Game {
 			sceneryColor = (new Color()).fromJson(json.sceneryColor);
 			Luxe.renderer.clear_color = backgroundColor;
 
+			trace("A");
+
 			//rehydrate terrain
 			if (curTerrain != null) curTerrain.clear();
 			curTerrain = new Terrain();
 			curTerrain.fromJson(json.terrain);
 			curTerrain.draw(terrainColor);
 
+			trace("B");
+
 			//rehydrate scenery
 			scenery = [];
 			for (s in cast(json.scenery, Array<Dynamic>)) {
-				scenery.push( (new Polystroke({color : sceneryColor, batcher : Luxe.renderer.batcher}, [])).fromJson(s) ); //feels hacky
+				var p = new Polystroke({color : sceneryColor, batcher : Luxe.renderer.batcher}, []);
+				p.fromJson(s);
+				scenery.push(p); //feels hacky
 			}
+
+			trace("C");
 		}
 
 		//save file
