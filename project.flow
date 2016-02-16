@@ -6,7 +6,7 @@
     author : 'Adam Le Doux',
 
     app : {
-      name : 'luxe_empty',
+      name : 'AdventurEd',
       package : 'org.luxeengine.adventured'
     },
 

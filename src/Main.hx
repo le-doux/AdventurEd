@@ -35,7 +35,18 @@ class Main extends luxe.Game {
 	var tmpStroke : Array<Vector> = [];
 	var scenery : Array<Polystroke> = [];
 
+	//screen ratio stuff
+	var wRatio = 16.0;
+	var hRatio = 9.0;
+	var widthInWorldPixels = 800.0;
+	var widthToHeight : Float; //calculated
+	var heightInWorldPixels : Float; //calculated
+
 	override function ready() {
+		widthToHeight = hRatio / wRatio;
+		heightInWorldPixels = widthInWorldPixels * widthToHeight;
+		trace(widthInWorldPixels + " x " + heightInWorldPixels);
+
 		terrainColor = new Color(1,1,1);
 		sceneryColor = new Color(1,0,0);
 		backgroundColor = new Color(0,0,0);
@@ -63,25 +74,22 @@ class Main extends luxe.Game {
 			sceneryColor = (new Color()).fromJson(json.sceneryColor);
 			Luxe.renderer.clear_color = backgroundColor;
 
-			trace("A");
-
 			//rehydrate terrain
 			if (curTerrain != null) curTerrain.clear();
 			curTerrain = new Terrain();
 			curTerrain.fromJson(json.terrain);
 			curTerrain.draw(terrainColor);
 
-			trace("B");
-
 			//rehydrate scenery
+			for (s in scenery) {
+				s.destroy();
+			}
 			scenery = [];
 			for (s in cast(json.scenery, Array<Dynamic>)) {
 				var p = new Polystroke({color : sceneryColor, batcher : Luxe.renderer.batcher}, []);
 				p.fromJson(s);
 				scenery.push(p); //feels hacky
 			}
-
-			trace("C");
 		}
 
 		//save file
@@ -227,6 +235,15 @@ class Main extends luxe.Game {
 				immediate : true
 			});
 		}
+
+		//draw screen box
+		Luxe.draw.rectangle({
+			x : ((Luxe.screen.width - widthInWorldPixels) / 2) + Luxe.camera.pos.x,
+			y : ((Luxe.screen.height - heightInWorldPixels) / 2) + Luxe.camera.pos.y,
+			w : widthInWorldPixels,
+			h : heightInWorldPixels,
+			immediate : true
+		});
 
 	} //update
 
