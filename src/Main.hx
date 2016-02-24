@@ -26,6 +26,11 @@ class Main extends luxe.Game {
 	var curTerrain : Terrain;
 
 	var mode = 0;
+	/*
+	 0 = terrain
+	 1 = scenery
+	 2 = action buttons
+	*/
 
 	var zoomIncrement = 0.2;
 	var panIncrement = 20;
@@ -34,6 +39,9 @@ class Main extends luxe.Game {
 
 	var tmpStroke : Array<Vector> = [];
 	var scenery : Array<Polystroke> = [];
+
+	var actionButtons : Array<ActionButton> = [];
+	var curButton : ActionButton;
 
 	//screen ratio stuff
 	var wRatio = 16.0;
@@ -61,6 +69,7 @@ class Main extends luxe.Game {
 		//hack
 		if (e.keycode == Key.key_1) mode = 0; //terrain
 		if (e.keycode == Key.key_2) mode = 1; //scenery
+		if (e.keycode == Key.key_3) mode = 2; //action button (might have to add more here)
 
 		//open file
 		if (e.keycode == Key.key_o && e.mod.meta ) {
@@ -68,27 +77,15 @@ class Main extends luxe.Game {
 			var fileStr = File.getContent(path);
 			var json = Json.parse(fileStr);
 
-			//rehydrate colors
-			backgroundColor = (new Color()).fromJson(json.backgroundColor);
-			terrainColor = (new Color()).fromJson(json.terrainColor);
-			sceneryColor = (new Color()).fromJson(json.sceneryColor);
-			Luxe.renderer.clear_color = backgroundColor;
-
-			//rehydrate terrain
-			if (curTerrain != null) curTerrain.clear();
-			curTerrain = new Terrain();
-			curTerrain.fromJson(json.terrain);
-			curTerrain.draw(terrainColor);
-
-			//rehydrate scenery
-			for (s in scenery) {
-				s.destroy();
+			if (json.type == "level") { 
+				openLevel(json); //need level class, need to abstract this shit
 			}
-			scenery = [];
-			for (s in cast(json.scenery, Array<Dynamic>)) {
-				var p = new Polystroke({color : sceneryColor, batcher : Luxe.renderer.batcher}, []);
-				p.fromJson(s);
-				scenery.push(p); //feels hacky
+			else if (json.type == "action") {
+				curButton = (new ActionButton()).fromJson(json);
+				curButton.terrain = curTerrain;
+				curButton.draw();
+				actionButtons.push(curButton);
+				mode = 2;
 			}
 		}
 
@@ -100,6 +97,7 @@ class Main extends luxe.Game {
 
 			//get data & write it
 			var saveJson = {
+				type : "level",
 				backgroundColor : backgroundColor.toJson(),
 				terrainColor : terrainColor.toJson(),
 				sceneryColor : sceneryColor.toJson(),
@@ -128,9 +126,46 @@ class Main extends luxe.Game {
 			curTerrain.redraw(terrainColor);
 		}
 
+		//move action button height
+		if (mode == 2) {
+			if (e.keycode == Key.key_w) {
+				curButton.height += 10;
+			}
+			else if (e.keycode == Key.key_s) {
+				curButton.height -= 10;
+			}
+			curButton.clear();
+			curButton.draw();
+		}
+
 		panScene(e);
 		zoomScene(e);
 
+	}
+
+	function openLevel(json) {
+		//rehydrate colors
+		backgroundColor = (new Color()).fromJson(json.backgroundColor);
+		terrainColor = (new Color()).fromJson(json.terrainColor);
+		sceneryColor = (new Color()).fromJson(json.sceneryColor);
+		Luxe.renderer.clear_color = backgroundColor;
+
+		//rehydrate terrain
+		if (curTerrain != null) curTerrain.clear();
+		curTerrain = new Terrain();
+		curTerrain.fromJson(json.terrain);
+		curTerrain.draw(terrainColor);
+
+		//rehydrate scenery
+		for (s in scenery) {
+			s.destroy();
+		}
+		scenery = [];
+		for (s in cast(json.scenery, Array<Dynamic>)) {
+			var p = new Polystroke({color : sceneryColor, batcher : Luxe.renderer.batcher}, []);
+			p.fromJson(s);
+			scenery.push(p); //feels hacky
+		}
 	}
 
 	/*
@@ -187,7 +222,15 @@ class Main extends luxe.Game {
 		else if (mode == 1) {
 			tmpStroke = [];
 			tmpStroke.push(world_point);
-		}		
+		}
+		else if (mode == 2) {
+			//move the action button around
+			var i = curTerrain.closestIndexHorizontally(Luxe.camera.screen_point_to_world(e.pos).x);
+			trace(curButton);
+			curButton.clear();
+			curButton.terrainPos = curTerrain.points[i].x - curTerrain.points[0].x; //turn this into a real function or something
+			curButton.draw();
+		}
 	}
 
 	override function onmousemove(e:MouseEvent) {

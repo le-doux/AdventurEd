@@ -1,4 +1,5 @@
 {
+    "type" : "level",
     "sceneryColor": {
         "b": 0,
         "r": 1,

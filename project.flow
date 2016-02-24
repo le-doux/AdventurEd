@@ -7,7 +7,7 @@
 
     app : {
       name : 'AdventurEd',
-      package : 'org.luxeengine.adventured'
+      package : 'org.ledoux.adventured'
     },
 
     build : {
