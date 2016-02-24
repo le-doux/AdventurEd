@@ -134,6 +134,13 @@ class Main extends luxe.Game {
 			else if (e.keycode == Key.key_s) {
 				curButton.height -= 10;
 			}
+			else if (e.keycode == Key.key_q) {
+				curButton.startSize += 10;
+			}
+			else if (e.keycode == Key.key_a) {
+				curButton.startSize -= 10;
+			}
+			//hacky redraw (use dynamic instead?)
 			curButton.clear();
 			curButton.draw();
 		}
@@ -213,11 +220,13 @@ class Main extends luxe.Game {
 		var world_point = Luxe.camera.screen_point_to_world( screen_point );
 
 		if (mode == 0) {
-			var prevSize = curTerrain.points.length;
-			curTerrain.buildTerrainToPoint(world_point);
-			if (prevSize != curTerrain.points.length) curTerrain.redraw(terrainColor);
+			if (Luxe.input.keydown(Key.lctrl)) {
+				var prevSize = curTerrain.points.length;
+				curTerrain.buildTerrainToPoint(world_point);
+				if (prevSize != curTerrain.points.length) curTerrain.redraw(terrainColor);
 
-			prevCursorPos = screen_point;
+				prevCursorPos = screen_point;
+			}
 		}
 		else if (mode == 1) {
 			tmpStroke = [];
@@ -226,7 +235,6 @@ class Main extends luxe.Game {
 		else if (mode == 2) {
 			//move the action button around
 			var i = curTerrain.closestIndexHorizontally(Luxe.camera.screen_point_to_world(e.pos).x);
-			trace(curButton);
 			curButton.clear();
 			curButton.terrainPos = curTerrain.points[i].x - curTerrain.points[0].x; //turn this into a real function or something
 			curButton.draw();
@@ -241,13 +249,15 @@ class Main extends luxe.Game {
 			var world_point = Luxe.camera.screen_point_to_world( screen_point );
 
 			if (mode == 0) {
-				var prevSize = curTerrain.points.length;
-				var prev_world_point = Luxe.camera.screen_point_to_world( prevCursorPos );
+				if (Luxe.input.keydown(Key.lctrl)) {
+					var prevSize = curTerrain.points.length;
+					var prev_world_point = Luxe.camera.screen_point_to_world( prevCursorPos );
 
-				curTerrain.buildTerrainAlongLine(prev_world_point, world_point);
-				if (prevSize != curTerrain.points.length) curTerrain.redraw(terrainColor);
+					curTerrain.buildTerrainAlongLine(prev_world_point, world_point);
+					if (prevSize != curTerrain.points.length) curTerrain.redraw(terrainColor);
 
-				prevCursorPos = screen_point;
+					prevCursorPos = screen_point;
+				}
 			}
 			else if (mode == 1) {
 				tmpStroke.push(world_point);

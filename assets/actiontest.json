@@ -9,7 +9,7 @@
 	"terrainPos" : 200,
 	"height" : 100,
 	"startSize" : 30,
-	"endSize" : 100,
+	"endSizeMult" : 3,
 	"pullDir" : "Left",
 	"outro" : "FillScreen"
 }
