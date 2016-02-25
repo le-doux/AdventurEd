@@ -46,6 +46,7 @@ class ActionButton {
 				depth : 0
 			})
 		);
+
 		geo.push(
 			Luxe.draw.ring({
 				x : worldPos.x, y : worldPos.y,
@@ -54,6 +55,8 @@ class ActionButton {
 				depth : 1
 			})
 		);
+
+		/*
 		//draw final size too
 		geo.push(
 			Luxe.draw.ring({
@@ -63,6 +66,7 @@ class ActionButton {
 				depth : 1
 			})
 		);
+		*/
 
 		//this is a ridiculous switch statement (remove as soon as possible)
 		switch pullDir {
@@ -134,6 +138,20 @@ class ActionButton {
 		for (g in geo) {
 			Luxe.renderer.batcher.remove(g);
 		}
+	}
+
+	//immediate mode drawing
+	public function drawUI() {
+		var worldPos = terrain.worldPosFromTerrainPos(terrainPos);
+		worldPos.y -= height; //height above the terrain
+
+		Luxe.draw.ring({
+			x : worldPos.x, y : worldPos.y,
+			r : startSize * endSizeMult,
+			color : illustrationColor,
+			depth : 1,
+			immediate : true
+		});
 	}
 
 	public function toJson() {

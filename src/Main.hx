@@ -13,6 +13,8 @@ using ColorExtender;
 using PolylineExtender;
 
 /* TODO
+	- create action button editor tool
+	- save action buttons w/ level
 	- put utilities in their own library if they're useful outside this project
 	- circle brush editor
 */
@@ -69,7 +71,7 @@ class Main extends luxe.Game {
 		//hack
 		if (e.keycode == Key.key_1) mode = 0; //terrain
 		if (e.keycode == Key.key_2) mode = 1; //scenery
-		if (e.keycode == Key.key_3) mode = 2; //action button (might have to add more here)
+		if (e.keycode == Key.key_3 && actionButtons.length > 0) mode = 2; //action button (might have to add more here)
 
 		//open file
 		if (e.keycode == Key.key_o && e.mod.meta ) {
@@ -116,7 +118,7 @@ class Main extends luxe.Game {
 		}
 
 		//delete hack
-		if (e.keycode == Key.key_d && curTerrain.points.length > 2) {
+		if (mode == 0 && e.keycode == Key.key_d && curTerrain.points.length > 2) {
 			if (e.mod.meta) {
 				curTerrain.removeStartPoint();
 			}
@@ -135,14 +137,45 @@ class Main extends luxe.Game {
 				curButton.height -= 10;
 			}
 			else if (e.keycode == Key.key_q) {
-				curButton.startSize += 10;
+				curButton.startSize += 5;
 			}
 			else if (e.keycode == Key.key_a) {
-				curButton.startSize -= 10;
+				curButton.startSize -= 5;
 			}
 			//hacky redraw (use dynamic instead?)
 			curButton.clear();
 			curButton.draw();
+
+			if (e.keycode == Key.key_e) {
+				var i = actionButtons.indexOf(curButton);
+				i--;
+				if (i < 0) i = actionButtons.length - 1;
+				curButton = actionButtons[i];
+			}
+			else if (e.keycode == Key.key_r) {
+				var i = actionButtons.indexOf(curButton);
+				i++;
+				if (i >= actionButtons.length) i = 0;
+				curButton = actionButtons[i];
+			}
+
+			if (e.keycode == Key.key_d && e.mod.meta) {
+				var i = actionButtons.indexOf(curButton);
+				i++;
+				if (i >= actionButtons.length) i = 0;
+				var nextButton = actionButtons[i];
+
+				curButton.clear(); //if this was an Entity or a Visual, we could use remove! (next round of coding)
+				actionButtons.remove(curButton);
+
+				if (actionButtons.length <= 0) {
+					mode = 0;
+					curButton = null;
+				}
+				else {
+					curButton = nextButton;
+				}
+			}
 		}
 
 		panScene(e);
@@ -297,6 +330,10 @@ class Main extends luxe.Game {
 			h : heightInWorldPixels,
 			immediate : true
 		});
+
+		if (mode == 2) {
+			curButton.drawUI();
+		}
 
 	} //update
 
