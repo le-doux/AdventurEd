@@ -1,6 +1,8 @@
 import luxe.Color;
 import luxe.Vector;
 import phoenix.geometry.*;
+import luxe.tween.Actuate;
+import luxe.tween.actuators.GenericActuator.IGenericActuator;
 using ColorExtender;
 
 enum Direction {
@@ -11,7 +13,7 @@ enum Direction {
 }
 
 enum OutroAnimation {
-	Disapear;
+	Disappear;
 	FillScreen;
 	Emphasize;
 }
@@ -23,15 +25,95 @@ class ActionButton {
 	public var terrainPos : Float;
 	public var height : Float;
 	public var startSize : Float;
-	var endSizeMult : Float;
-	var pullDir : Direction;
-	var outro : OutroAnimation;
+	public var endSizeMult : Float;
+	public var pullDir : Direction;
+	public var outro : OutroAnimation;
 
 	public var terrain : Terrain;
 	var geo : Array<Geometry> = [];
 
+	public var curSize : Float;
+	public var curState = 0; //0 - start, 1 - end
+
 	public function new() {
 
+	}
+
+	public function animateAppear() : IGenericActuator {
+		curSize = 0;
+		return Actuate.tween(this, 1.0, {curSize: startSize})
+					.ease(luxe.tween.easing.Bounce.easeOut)
+					.onComplete(function(){
+						updateCurSize();
+					});
+	}
+
+	public function animatePull() {
+		curSize = startSize;
+		return Actuate.tween(this, 3.0, {curSize: startSize*endSizeMult})
+					.ease(luxe.tween.easing.Quad.easeOut)
+					.onComplete(function(){
+						updateCurSize();
+					});
+	}
+
+	public function animateOutro() { //returning this will be tricky
+		switch outro {
+			case OutroAnimation.Disappear:
+				animateDisappear();
+			case OutroAnimation.FillScreen:
+				animateFillScreen();
+			case OutroAnimation.Emphasize:
+				animateEmphasize();
+		}
+	}
+
+	function animateDisappear() {
+		curSize = startSize * endSizeMult;
+		return Actuate.tween(this, 1.0, {curSize: 0})
+				.ease(luxe.tween.easing.Elastic.easeIn);
+	}
+
+	function animateFillScreen() {
+		curSize = startSize * endSizeMult;
+		return Actuate.tween(this, 1.0, {curSize: Luxe.screen.width})
+				.ease(luxe.tween.easing.Quad.easeIn);
+	}
+
+	function animateEmphasize() { //how to return? (we could use a callback)
+		curSize = startSize * endSizeMult;
+		Actuate.tween(this, 0.6, {curSize: startSize * (endSizeMult * 1.5)})
+				.ease(luxe.tween.easing.Bounce.easeOut)
+				.onComplete(function() {
+					Actuate.tween(this, 0.2, {curSize: 0})
+							.delay(0.4)
+							.ease(luxe.tween.easing.Quad.easeIn);
+				});
+	}
+
+	public function animateSequence() {
+		animateAppear()
+			.onComplete(function() {
+				animatePull()
+					.onComplete(function(){
+							animateOutro();
+						});
+			});
+	}
+
+	public function showStart() {
+		curSize = startSize;
+		curState = 0;
+	}
+
+	public function showEnd() {
+		curSize = startSize * endSizeMult;
+		curState = 1;
+	}
+
+	public function updateCurSize() { //the worst kind of hack
+		if (curState == 0) curSize = startSize;
+		if (curState == 1) curSize = startSize * endSizeMult;
 	}
 
 	//do I need a dynamic draw too? (especially for the arrows)
@@ -133,6 +215,85 @@ class ActionButton {
 		}
 	}
 
+	public function drawImmediate() {
+		var worldPos = new Vector(Luxe.screen.width/2, Luxe.screen.height/2); //ugly hack
+
+		Luxe.draw.circle({
+			x : worldPos.x, y : worldPos.y,
+			r : curSize,
+			color : backgroundColor,
+			depth : 0,
+			immediate : true
+		});
+
+		Luxe.draw.ring({
+			x : worldPos.x, y : worldPos.y,
+			r : curSize,
+			color : illustrationColor,
+			depth : 1,
+			immediate : true
+		});
+
+		if (curSize >= startSize) {
+			//this is a ridiculous switch statement (remove as soon as possible)
+			switch pullDir {
+				case Direction.Left:
+					Luxe.draw.line({
+						p0 : new Vector(worldPos.x - curSize - 30, worldPos.y),
+						p1 : new Vector(worldPos.x - curSize - 10, worldPos.y - 10),
+						color : illustrationColor,
+						immediate : true
+					});
+					Luxe.draw.line({
+						p0 : new Vector(worldPos.x - curSize - 30, worldPos.y),
+						p1 : new Vector(worldPos.x - curSize - 10, worldPos.y + 10),
+						color : illustrationColor,
+						immediate : true
+					});
+				case Direction.Right:
+					Luxe.draw.line({
+						p0 : new Vector(worldPos.x + curSize + 30, worldPos.y),
+						p1 : new Vector(worldPos.x + curSize + 10, worldPos.y - 10),
+						color : illustrationColor,
+						immediate : true
+					});
+					Luxe.draw.line({
+						p0 : new Vector(worldPos.x + curSize + 30, worldPos.y),
+						p1 : new Vector(worldPos.x + curSize + 10, worldPos.y + 10),
+						color : illustrationColor,
+						immediate : true
+					});
+				case Direction.Up:
+					Luxe.draw.line({
+						p0 : new Vector(worldPos.x, worldPos.y - curSize - 30),
+						p1 : new Vector(worldPos.x - 10, worldPos.y - curSize - 10),
+						color : illustrationColor,
+						immediate : true
+					});
+					Luxe.draw.line({
+						p0 : new Vector(worldPos.x, worldPos.y - curSize - 30),
+						p1 : new Vector(worldPos.x + 10, worldPos.y - curSize - 10),
+						color : illustrationColor,
+						immediate : true
+					});
+				case Direction.Down:
+					Luxe.draw.line({
+						p0 : new Vector(worldPos.x, worldPos.y + curSize + 30),
+						p1 : new Vector(worldPos.x - 10, worldPos.y + curSize + 10),
+						color : illustrationColor,
+						immediate : true
+					});
+					Luxe.draw.line({
+						p0 : new Vector(worldPos.x, worldPos.y + curSize + 30),
+						p1 : new Vector(worldPos.x + 10, worldPos.y + curSize + 10),
+						color : illustrationColor,
+						immediate : true
+					});
+			}
+		}
+
+	}
+
 	public function clear() {
 		//Luxe.renderer.batcher.remove(circle);
 		for (g in geo) {
@@ -177,6 +338,8 @@ class ActionButton {
 		endSizeMult = json.endSizeMult;
 		pullDir = Direction.createByName(json.pullDir);
 		outro = OutroAnimation.createByName(json.outro);
+
+		curSize = startSize;
 
 		return this;
 	}

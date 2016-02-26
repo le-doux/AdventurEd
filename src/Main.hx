@@ -104,10 +104,14 @@ class Main extends luxe.Game {
 				terrainColor : terrainColor.toJson(),
 				sceneryColor : sceneryColor.toJson(),
 				terrain : curTerrain.toJson(),
-				scenery : []
+				scenery : [],
+				buttons : []
 			};
 			for (s in scenery) {
 				saveJson.scenery.push(s.toJson());
+			}
+			for (b in actionButtons) {
+				saveJson.buttons.push(b.toJson());
 			}
 
 			var saveStr = Json.stringify(saveJson, null, "    ");
@@ -205,6 +209,19 @@ class Main extends luxe.Game {
 			var p = new Polystroke({color : sceneryColor, batcher : Luxe.renderer.batcher}, []);
 			p.fromJson(s);
 			scenery.push(p); //feels hacky
+		}
+
+		//rehydrage action buttons
+		for (b in actionButtons) {
+			b.clear();
+		}
+		actionButtons = [];
+		for (b in cast(json.buttons, Array<Dynamic>)) {
+			var a = (new ActionButton()).fromJson(b);
+			a.terrain = curTerrain;
+			a.draw();
+			actionButtons.push(a);
+			curButton = a; //hacky
 		}
 	}
 
