@@ -28,7 +28,7 @@
             "pullDir": "Up",
             "type": "action",
             "outro": "Disappear",
-            "startSize": 55,
+            "startSize": 30,
             "illustrationColor": {
                 "b": 1,
                 "r": 1,

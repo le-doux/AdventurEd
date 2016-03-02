@@ -211,7 +211,7 @@ class Main extends luxe.Game {
 			scenery.push(p); //feels hacky
 		}
 
-		//rehydrage action buttons
+		//rehydrate action buttons
 		for (b in actionButtons) {
 			b.clear();
 		}
