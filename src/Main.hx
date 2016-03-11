@@ -83,9 +83,9 @@ class Main extends luxe.Game {
 				openLevel(json); //need level class, need to abstract this shit
 			}
 			else if (json.type == "action") {
-				curButton = (new ActionButton()).fromJson(json);
+				curButton = (new ActionButton({})).fromJson(json);
 				curButton.terrain = curTerrain;
-				curButton.draw();
+				//curButton.draw();
 				actionButtons.push(curButton);
 				mode = 2;
 			}
@@ -141,26 +141,30 @@ class Main extends luxe.Game {
 				curButton.height -= 10;
 			}
 			else if (e.keycode == Key.key_q) {
-				curButton.startSize += 5;
+				//curButton.startSize += 5;
+				curButton.curSize += 0.1;
 			}
 			else if (e.keycode == Key.key_a) {
-				curButton.startSize -= 5;
+				//curButton.startSize -= 5;
+				curButton.curSize -= 0.1;
 			}
 			//hacky redraw (use dynamic instead?)
-			curButton.clear();
-			curButton.draw();
+			//curButton.clear();
+			//curButton.draw();
 
 			if (e.keycode == Key.key_e) {
 				var i = actionButtons.indexOf(curButton);
 				i--;
 				if (i < 0) i = actionButtons.length - 1;
 				curButton = actionButtons[i];
+				curButton.editStart();
 			}
 			else if (e.keycode == Key.key_r) {
 				var i = actionButtons.indexOf(curButton);
 				i++;
 				if (i >= actionButtons.length) i = 0;
 				curButton = actionButtons[i];
+				curButton.editStart();
 			}
 
 			if (e.keycode == Key.key_d && e.mod.meta) {
@@ -169,7 +173,9 @@ class Main extends luxe.Game {
 				if (i >= actionButtons.length) i = 0;
 				var nextButton = actionButtons[i];
 
-				curButton.clear(); //if this was an Entity or a Visual, we could use remove! (next round of coding)
+				//curButton.clear(); //if this was an Entity or a Visual, we could use remove! (next round of coding)
+				Luxe.scene.remove(curButton);
+				curButton.destroy();
 				actionButtons.remove(curButton);
 
 				if (actionButtons.length <= 0) {
@@ -178,6 +184,7 @@ class Main extends luxe.Game {
 				}
 				else {
 					curButton = nextButton;
+					curButton.editStart();
 				}
 			}
 		}
@@ -213,13 +220,15 @@ class Main extends luxe.Game {
 
 		//rehydrate action buttons
 		for (b in actionButtons) {
-			b.clear();
+			//b.clear();
+			Luxe.scene.remove(b);
+			b.destroy();
 		}
 		actionButtons = [];
 		for (b in cast(json.buttons, Array<Dynamic>)) {
-			var a = (new ActionButton()).fromJson(b);
+			var a = (new ActionButton({})).fromJson(b);
 			a.terrain = curTerrain;
-			a.draw();
+			//a.draw();
 			actionButtons.push(a);
 			curButton = a; //hacky
 		}
@@ -285,9 +294,9 @@ class Main extends luxe.Game {
 		else if (mode == 2) {
 			//move the action button around
 			var i = curTerrain.closestIndexHorizontally(Luxe.camera.screen_point_to_world(e.pos).x);
-			curButton.clear();
+			//curButton.clear();
 			curButton.terrainPos = curTerrain.points[i].x - curTerrain.points[0].x; //turn this into a real function or something
-			curButton.draw();
+			//curButton.draw();
 		}
 	}
 
@@ -348,9 +357,11 @@ class Main extends luxe.Game {
 			immediate : true
 		});
 
+		/*
 		if (mode == 2) {
 			curButton.drawUI();
 		}
+		*/
 
 	} //update
 

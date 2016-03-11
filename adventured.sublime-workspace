@@ -4,11 +4,91 @@
 		"selected_items":
 		[
 			[
-				"scne",
-				"sceneryColor"
+				"swi",
+				"switchIllustration"
+			],
+			[
+				"cur",
+				"curTerrain"
+			],
+			[
+				"dr",
+				"m· draw	 "
+			],
+			[
+				"action",
+				"actionButtons"
+			],
+			[
+				"act",
+				"actionButtons"
+			],
+			[
+				"next",
+				"nextButton"
+			],
+			[
+				"ac",
+				"actionButtons"
+			],
+			[
+				"ation",
+				"actionButtons"
+			],
+			[
+				"draw",
+				"m· drawUI	 "
+			],
+			[
+				"he",
+				"height"
+			],
+			[
+				"sc",
+				"m· screen_point_to_world	luxe.Vector"
+			],
+			[
+				"ter",
+				"terrainPos"
+			],
+			[
+				"cre",
+				"m· createByName	OutroAnimation"
+			],
+			[
+				"crea",
+				"m· createByName	Direction"
+			],
+			[
+				"get",
+				"m· getName	String"
+			],
+			[
+				"Di",
+				"Direction"
+			],
+			[
+				"hei",
+				"heightInWorldPixels"
+			],
+			[
+				"wid",
+				"widthInWorldPixels"
+			],
+			[
+				"wi",
+				"widthInWorldPixels"
+			],
+			[
+				"des",
+				"m· destroy	 "
 			],
 			[
 				"scen",
+				"scenery"
+			],
+			[
+				"scne",
 				"sceneryColor"
 			],
 			[
@@ -26,10 +106,6 @@
 			[
 				"se",
 				"m· setFromJson	luxe.Color"
-			],
-			[
-				"ter",
-				"terrainColor"
 			],
 			[
 				"buildT",
@@ -50,14 +126,6 @@
 			[
 				"Ter",
 				"Terrain"
-			],
-			[
-				"cur",
-				"curTerrain"
-			],
-			[
-				"sc",
-				"p· screen	luxe.Screen"
 			],
 			[
 				"close",
@@ -98,10 +166,6 @@
 			[
 				"p",
 				"p· pos	luxe.Vector"
-			],
-			[
-				"get",
-				"m· getContent	String"
 			],
 			[
 				"Fi",
@@ -274,10 +338,6 @@
 			[
 				"ma",
 				"p· maxYOffset	Int"
-			],
-			[
-				"act",
-				"actionButton"
 			],
 			[
 				"aci",
@@ -454,66 +514,6 @@
 			[
 				"levelb",
 				"levelBoundLeft"
-			],
-			[
-				"srol",
-				"scrollVelocity"
-			],
-			[
-				"edger",
-				"edgeReboundAnimTime"
-			],
-			[
-				"edgere",
-				"edgeReboundMinSpeed"
-			],
-			[
-				"h",
-				"p· height	Float"
-			],
-			[
-				"rady",
-				"readyToBounceBack"
-			],
-			[
-				"ready",
-				"readyToBounceBack"
-			],
-			[
-				"leve",
-				"levelBoundRight"
-			],
-			[
-				"a",
-				"p· actuators	package"
-			],
-			[
-				"ac",
-				"p· Actuate	Actuate"
-			],
-			[
-				"edge",
-				"edgeResistanceFactor"
-			],
-			[
-				"levelB",
-				"levelBoundLeft"
-			],
-			[
-				"min",
-				"m· min	Float"
-			],
-			[
-				"set",
-				"m· set_perspective	 "
-			],
-			[
-				"pro",
-				"p· projection	phoenix.ProjectionType"
-			],
-			[
-				"proj",
-				"ProjectionType"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "project.flow",
 			"settings":
 			{
-				"buffer_size": 311,
+				"buffer_size": 307,
 				"line_ending": "Unix"
 			}
 		},
@@ -531,15 +531,7 @@
 			"file": "src/Main.hx",
 			"settings":
 			{
-				"buffer_size": 5278,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "assets/leveltest3",
-			"settings":
-			{
-				"buffer_size": 34527,
+				"buffer_size": 8636,
 				"line_ending": "Unix"
 			}
 		},
@@ -552,29 +544,21 @@
 			}
 		},
 		{
-			"file": "assets/leveltest1",
-			"settings":
-			{
-				"buffer_size": 802,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Terrain.hx",
-			"settings":
-			{
-				"buffer_size": 2544,
-				"line_ending": "Unix",
-				"name": "class Terrain {"
-			}
-		},
-		{
 			"file": "src/TerrainEditor.hx",
 			"settings":
 			{
 				"buffer_size": 1796,
 				"line_ending": "Unix",
 				"name": "class TerrainEditor {"
+			}
+		},
+		{
+			"file": "src/ActionButton.hx",
+			"settings":
+			{
+				"buffer_size": 10465,
+				"line_ending": "Unix",
+				"name": "class ActionButton {"
 			}
 		},
 		{
@@ -603,10 +587,26 @@
 			}
 		},
 		{
-			"file": "assets/leveltest4",
+			"file": "assets/actiontest.json",
 			"settings":
 			{
-				"buffer_size": 87236,
+				"buffer_size": 257,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Terrain.hx",
+			"settings":
+			{
+				"buffer_size": 3103,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "assets/actiontest2.json",
+			"settings":
+			{
+				"buffer_size": 257,
 				"line_ending": "Unix"
 			}
 		}
@@ -768,6 +768,10 @@
 	},
 	"file_history":
 	[
+		"/Users/adamrossledoux/Code/Haxe/AdventurEd/assets/leveltest4",
+		"/Users/adamrossledoux/Code/Haxe/AdventurEd/src/Terrain.hx",
+		"/Users/adamrossledoux/Code/Haxe/AdventurEd/assets/leveltest1",
+		"/Users/adamrossledoux/Code/Haxe/AdventurEd/assets/leveltest3",
 		"/Users/adamrossledoux/Code/Haxe/AdventurEd/assets/leveltest2",
 		"/Users/adamrossledoux/Code/Haxe/libs/pincushion/pincushion/Pincushion.hx",
 		"/Users/adamrossledoux/Code/Haxe/libs/pincushion/pincushion/Pin.hx",
@@ -891,11 +895,7 @@
 		"/Users/adamrossledoux/Code/Haxe/StarGazing/src/components/AnimateStrokes.hx",
 		"/Users/adamrossledoux/Code/Haxe/StarGazing/src/components/PointAtStars.hx",
 		"/Users/adamrossledoux/Code/Haxe/StarGazing/project.flow",
-		"/Users/adamrossledoux/.Archive/Code/Haxe/SnowglobeDraw/src/Main.hx",
-		"/Users/adamrossledoux/Code/Haxe/StarGazing/src/PointAtStars.hx",
-		"/Users/adamrossledoux/Code/Unity/DayJam_081615_SoundJam/Builds/befriend_web/befriend_web.html",
-		"/Users/adamrossledoux/Code/Haxe/libs/pincushion/pincushion.flow",
-		"/Users/adamrossledoux/Code/Haxe/Pincushion/assets/scene7.csh/_component_settings/Pin.2FGG7v/Pin.2FGG7v.json"
+		"/Users/adamrossledoux/.Archive/Code/Haxe/SnowglobeDraw/src/Main.hx"
 	],
 	"find":
 	{
@@ -918,6 +918,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"curbutton",
+			"trace",
 			"setFromJson",
 			"getJson",
 			"draw(",
@@ -1043,9 +1045,7 @@
 			"layers",
 			"LayerManager, layers",
 			"LayerManager",
-			"layermanager",
-			"ledoux.UtilityBelt",
-			"switchlayerselection("
+			"layermanager"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1107,7 +1107,7 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -1116,15 +1116,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 311,
+						"buffer_size": 307,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								250,
-								250
+								253,
+								253
 							]
 						],
 						"settings":
@@ -1137,7 +1137,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -1146,60 +1146,31 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5278,
+						"buffer_size": 8636,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1310,
-								1310
+								6142,
+								6142
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/sublime_haxe/Haxe.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 855.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "assets/leveltest3",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 34527,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2615,
-								2615
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/sublime_haxe/Haxe.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 2,
 					"file": "src/Polystroke.hx",
 					"semi_transient": false,
 					"settings":
@@ -1211,8 +1182,8 @@
 						"selection":
 						[
 							[
-								1094,
-								1094
+								422,
+								422
 							]
 						],
 						"settings":
@@ -1221,71 +1192,14 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 447.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "assets/leveltest1",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 802,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								788,
-								788
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "src/Terrain.hx",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2544,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								389,
-								389
-							]
-						],
-						"settings":
-						{
-							"auto_name": "class Terrain {",
-							"syntax": "Packages/sublime_haxe/Haxe.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
+					"buffer": 3,
 					"file": "src/TerrainEditor.hx",
 					"semi_transient": false,
 					"settings":
@@ -1297,30 +1211,60 @@
 						"selection":
 						[
 							[
-								1541,
-								1541
+								543,
+								543
 							]
 						],
 						"settings":
 						{
 							"auto_name": "class TerrainEditor {",
-							"syntax": "Packages/sublime_haxe/Haxe.tmLanguage"
+							"syntax": "Packages/sublime_haxe/Haxe.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/ActionButton.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10465,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3513,
+								3513
+							]
+						],
+						"settings":
+						{
+							"auto_name": "class ActionButton {",
+							"syntax": "Packages/sublime_haxe/Haxe.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2418.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 3,
+			"selected": 4,
 			"sheets":
 			[
 				{
-					"buffer": 7,
+					"buffer": 5,
 					"file": "src/VectorExtender.hx",
 					"semi_transient": false,
 					"settings":
@@ -1342,14 +1286,14 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 206.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 6,
 					"file": "src/ColorExtender.hx",
 					"semi_transient": false,
 					"settings":
@@ -1368,17 +1312,18 @@
 						"settings":
 						{
 							"auto_name": "import luxe.Color;",
-							"syntax": "Packages/sublime_haxe/Haxe.tmLanguage"
+							"syntax": "Packages/sublime_haxe/Haxe.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 7,
 					"file": "src/PolylineExtender.hx",
 					"semi_transient": false,
 					"settings":
@@ -1400,40 +1345,97 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1946.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
-					"file": "assets/leveltest4",
+					"buffer": 8,
+					"file": "assets/actiontest.json",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 87236,
+						"buffer_size": 257,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4590,
-								4590
+								0,
+								257
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 3398.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "src/Terrain.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3103,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								571,
+								571
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/sublime_haxe/Haxe.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 106.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "assets/actiontest2.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 257,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								208,
+								208
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -1467,7 +1469,7 @@
 		"cols":
 		[
 			0.0,
-			0.708908081054,
+			0.758029174804,
 			1.0
 		],
 		"rows":
@@ -1479,7 +1481,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 359.0
+		"height": 341.0
 	},
 	"output.find_results":
 	{
@@ -1512,10 +1514,34 @@
 	},
 	"select_symbol":
 	{
-		"height": 127.0,
-		"last_filter": "sav",
+		"height": 107.0,
+		"last_filter": "draw",
 		"selected_items":
 		[
+			[
+				"draw",
+				"draw"
+			],
+			[
+				"open",
+				"openLevel"
+			],
+			[
+				"openl",
+				"openLevel"
+			],
+			[
+				"keydo",
+				"onkeydown"
+			],
+			[
+				"on",
+				"onkeydown"
+			],
+			[
+				"on ",
+				"onmousedown"
+			],
 			[
 				"sav",
 				"save"
@@ -1523,10 +1549,6 @@
 			[
 				"resi",
 				"onwindowresized"
-			],
-			[
-				"open",
-				"open"
 			],
 			[
 				"onkey",
@@ -1595,10 +1617,6 @@
 			[
 				"update",
 				"update"
-			],
-			[
-				"on",
-				"on_quit"
 			],
 			[
 				"re",
@@ -1703,10 +1721,6 @@
 			[
 				"wav",
 				"waveUpdate"
-			],
-			[
-				"draw",
-				"drawOcean"
 			],
 			[
 				"loop",
@@ -1965,10 +1979,6 @@
 				"undo"
 			],
 			[
-				"keydo",
-				"onkeydown"
-			],
-			[
 				"editg",
 				"editGroup"
 			],
@@ -2019,17 +2029,9 @@
 			[
 				"selectlaye",
 				"selectLayerWithCursor"
-			],
-			[
-				"layerlin",
-				"layerLineHeights"
-			],
-			[
-				"drag",
-				"sceneDrag"
 			]
 		],
-		"width": 395.0
+		"width": 392.0
 	},
 	"selected_group": 0,
 	"settings":
