@@ -4,12 +4,24 @@
 		"selected_items":
 		[
 			[
-				"swi",
-				"switchIllustration"
+				"edit",
+				"m· editStart	 "
+			],
+			[
+				"illustra",
+				"illustrationColor"
 			],
 			[
 				"cur",
-				"curTerrain"
+				"p· curSize	Float"
+			],
+			[
+				"ter",
+				"terrain"
+			],
+			[
+				"swi",
+				"switchIllustration"
 			],
 			[
 				"dr",
@@ -46,10 +58,6 @@
 			[
 				"sc",
 				"m· screen_point_to_world	luxe.Vector"
-			],
-			[
-				"ter",
-				"terrainPos"
 			],
 			[
 				"cre",
@@ -506,14 +514,6 @@
 			[
 				"w",
 				"p· width	Float"
-			],
-			[
-				"clear",
-				"p· clear_color	phoenix.Color"
-			],
-			[
-				"levelb",
-				"levelBoundLeft"
 			]
 		]
 	},
@@ -531,7 +531,31 @@
 			"file": "src/Main.hx",
 			"settings":
 			{
-				"buffer_size": 8636,
+				"buffer_size": 8981,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/adamrossledoux/Code/Haxe/AdventureButton/assets/button_a.json",
+			"settings":
+			{
+				"buffer_size": 35095,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/adamrossledoux/Code/Haxe/AdventureButton/assets/button_c.json",
+			"settings":
+			{
+				"buffer_size": 17666,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/adamrossledoux/Code/Haxe/AdventureButton/assets/button_x.json",
+			"settings":
+			{
+				"buffer_size": 20823,
 				"line_ending": "Unix"
 			}
 		},
@@ -556,7 +580,7 @@
 			"file": "src/ActionButton.hx",
 			"settings":
 			{
-				"buffer_size": 10465,
+				"buffer_size": 7449,
 				"line_ending": "Unix",
 				"name": "class ActionButton {"
 			}
@@ -918,6 +942,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"actionButtons",
+			"terrain",
 			"curbutton",
 			"trace",
 			"setFromJson",
@@ -1043,9 +1069,7 @@
 			"main.layer.set",
 			"removeLaye",
 			"layers",
-			"LayerManager, layers",
-			"LayerManager",
-			"layermanager"
+			"LayerManager, layers"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1107,7 +1131,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1137,7 +1161,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -1146,15 +1170,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8636,
+						"buffer_size": 8981,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6142,
-								6142
+								1939,
+								1939
 							]
 						],
 						"settings":
@@ -1163,14 +1187,104 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 976.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/adamrossledoux/Code/Haxe/AdventureButton/assets/button_a.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 35095,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								35033,
+								35033
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 17086.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
+					"file": "/Users/adamrossledoux/Code/Haxe/AdventureButton/assets/button_c.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17666,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17620,
+								17620
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 8626.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/Users/adamrossledoux/Code/Haxe/AdventureButton/assets/button_x.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 20823,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "src/Polystroke.hx",
 					"semi_transient": false,
 					"settings":
@@ -1182,8 +1296,8 @@
 						"selection":
 						[
 							[
-								422,
-								422
+								1171,
+								1171
 							]
 						],
 						"settings":
@@ -1192,14 +1306,14 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 458.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 6,
 					"file": "src/TerrainEditor.hx",
 					"semi_transient": false,
 					"settings":
@@ -1225,36 +1339,37 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 7,
 					"file": "src/ActionButton.hx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10465,
+						"buffer_size": 7449,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3513,
-								3513
+								7164,
+								7164
 							]
 						],
 						"settings":
 						{
 							"auto_name": "class ActionButton {",
-							"syntax": "Packages/sublime_haxe/Haxe.tmLanguage"
+							"syntax": "Packages/sublime_haxe/Haxe.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2418.0,
+						"translation.y": 4037.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -1264,7 +1379,7 @@
 			"sheets":
 			[
 				{
-					"buffer": 5,
+					"buffer": 8,
 					"file": "src/VectorExtender.hx",
 					"semi_transient": false,
 					"settings":
@@ -1289,11 +1404,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 9,
 					"file": "src/ColorExtender.hx",
 					"semi_transient": false,
 					"settings":
@@ -1319,11 +1434,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 10,
 					"file": "src/PolylineExtender.hx",
 					"semi_transient": false,
 					"settings":
@@ -1348,11 +1463,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 11,
 					"file": "assets/actiontest.json",
 					"semi_transient": false,
 					"settings":
@@ -1370,17 +1485,18 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 12,
 					"file": "src/Terrain.hx",
 					"semi_transient": false,
 					"settings":
@@ -1402,14 +1518,14 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 106.0,
+						"translation.y": 1271.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 13,
 					"file": "assets/actiontest2.json",
 					"semi_transient": false,
 					"settings":
@@ -1435,7 +1551,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 9,
 					"type": "text"
 				}
 			]
@@ -1469,7 +1585,7 @@
 		"cols":
 		[
 			0.0,
-			0.758029174804,
+			0.846206665038,
 			1.0
 		],
 		"rows":

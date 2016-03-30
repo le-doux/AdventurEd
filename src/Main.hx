@@ -85,6 +85,7 @@ class Main extends luxe.Game {
 			else if (json.type == "action") {
 				curButton = (new ActionButton({})).fromJson(json);
 				curButton.terrain = curTerrain;
+				curButton.editStart(); //there has to be a better way to do this
 				//curButton.draw();
 				actionButtons.push(curButton);
 				mode = 2;
